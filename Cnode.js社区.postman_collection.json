@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "ba3e35d0-78df-417c-9b6a-bbb150d5bec0",
+		"name": "Cnode.js社区",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "新建主题01",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "42b4e44c-1266-471c-9aa9-9083bfac9dc1",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include('\"success\":true');",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"accesstoken\":\"c0076713-d50a-41ef-baeb-62ea7cdefe70\",\n\t\"title\":\"today is 20180506\",\n\t\"tab\":\"ask\",\n\t\"content\":\"今天是2018年5月6日，星期日！\"\n}"
+				},
+				"url": {
+					"raw": "http://118.31.19.120:3000/api/v1/topics",
+					"protocol": "http",
+					"host": [
+						"118",
+						"31",
+						"19",
+						"120"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"topics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "编辑主题01",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"accesstoken\":\"c0076713-d50a-41ef-baeb-62ea7cdefe70\",\n\t\"topic_id\": \"5aee78df6151bdf360df7226\",\n\t\"title\":\"today is 2018-05-06\",\n\t\"tab\":\"ask\",\n\t\"content\":\"今天是2018年5月6日！\"\n}"
+				},
+				"url": {
+					"raw": "http://118.31.19.120:3000/api/v1/topics/update",
+					"protocol": "http",
+					"host": [
+						"118",
+						"31",
+						"19",
+						"120"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"topics",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "主题首页01",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "testuser4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/api/v1/topics?page=1&tab=ask&limit=2&mdrender=false",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"topics"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "tab",
+							"value": "ask"
+						},
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "mdrender",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
